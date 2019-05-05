@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem name="二维火接口维护"
+                  id="2dfire_interface_menu_root" groups="bn_2dfire.2dfire_setting_group"/>
+
+        <menuitem name="接口参数维护"
+                  sequence="10"
+                  id="bn_2dfire_setting_interface_menu"
+                  parent="2dfire_interface_menu_root" groups="bn_2dfire.2dfire_setting_group"/>
+
+
+        <menuitem name="数据同步维护"
+                  sequence="15"
+                  id="bn_2dfire_sync_data_menu"
+                  parent="2dfire_interface_menu_root" groups="bn_2dfire.2dfire_setting_group"/>
+
+
+    </data>
+</odoo>

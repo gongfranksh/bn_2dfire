@@ -1,0 +1,30 @@
+<odoo>
+    <!--<record id="company_id_2000" model="res.company">-->
+        <!--<field name="name">乐之咖啡上海店</field>-->
+        <!--<field name="bncode">131360</field>-->
+        <!--<field name="buid">1</field>-->
+        <!--<field name="mp_bucode">021004</field>-->
+        <!--<field name="mp_buname">上海乐之精品咖啡</field>-->
+    <!--</record>-->
+
+    <!--<record id="company_id_2200" model="res.company">-->
+        <!--<field name="name">比吞斯</field>-->
+        <!--<field name="bncode">131363</field>-->
+        <!--<field name="buid">1</field>-->
+        <!--<field name="mp_bucode">021001</field>-->
+        <!--<field name="mp_buname">Betweens公众号</field>-->
+    <!--</record>-->
+
+    <!--<record id="company_id_2100" model="res.company">-->
+        <!--<field name="name">乐之咖啡天津店</field>-->
+        <!--<field name="bncode">00241638</field>-->
+        <!--<field name="buid">1</field>-->
+    <!--</record>-->
+
+
+     <record id="company_id_2300" model="res.company">
+        <field name="name">BuynowCare-好汇修-厦门店</field>
+        <field name="bncode">00401742</field>
+        <field name="buid">1</field>
+    </record>
+</odoo>
