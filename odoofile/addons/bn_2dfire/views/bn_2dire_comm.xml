@@ -72,8 +72,6 @@
         </record>
 
 
-
-
         <record id="action_bn_2dfire_log" model="ir.actions.act_window">
             <field name="name">同步日志</field>
             <field name="res_model">bn.2dfire.log</field>
@@ -81,33 +79,33 @@
         </record>
 
 
-        <menuitem name="Appid设置"
+        <menuitem name="1-->Appid设置"
                   id="bn_2dfire_appid_setting_menu"
                   parent="bn_2dfire_setting_interface_menu"
                   action="action_bn_2dfire_setting_appid"/>
 
-
-        <menuitem name="门店维护"
-                  id="bn_2dfire_branch_setting_menu"
-                  parent="bn_2dfire_setting_interface_menu"
-                  action="action_bn_2dfire_branchs"/>
-
-
-        <menuitem name="调用地址维护"
+        <menuitem name="2-->调用地址维护"
                   id="bn_2dfire_urlsetting_menu"
                   parent="bn_2dfire_setting_interface_menu"
                   action="action_bn_2dfire_url"/>
 
-
-        <menuitem name="授权门店资料"
-                  id="bn_2dfire_shops_menu"
-                  parent="bn_2dfire_setting_interface_menu"
-                  action="action_bn_2dfire_stores"/>
-
-        <menuitem name="同步日志"
+        <menuitem name="3-->同步日志"
                   id="bn_2dfire_log_menu"
                   parent="bn_2dfire_setting_interface_menu"
                   action="action_bn_2dfire_log"/>
+
+
+        <menuitem name="1-->授权门店"
+                  sequence="10"
+                  id="bn_2dfire_shops_menu"
+                  parent="bn_2dfire_setting_stores_menu"
+                  action="action_bn_2dfire_stores"/>
+
+        <menuitem name="2-->门店绑定"
+                  sequence="20"
+                  id="bn_2dfire_branch_setting_menu"
+                  parent="bn_2dfire_setting_stores_menu"
+                  action="action_bn_2dfire_branchs"/>
 
 
     </data>
