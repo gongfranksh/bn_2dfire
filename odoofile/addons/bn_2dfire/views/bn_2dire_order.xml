@@ -229,14 +229,12 @@
             <field name="search_view_id" ref="2dire_order_ordervo_tree_search"/>
         </record>
 
-
         <record id="action_bn_2dfire_order_list" model="ir.actions.act_window">
             <field name="name">bn.2dfire.orderlist</field>
             <field name="res_model">bn.2dfire.order.orderlist</field>
             <field name="view_mode">tree,form</field>
             <field name="context" eval="{'search_default_entityId':1}"/>
             <field name="search_view_id" ref="2dire_order_list_tree_search"/>
-
         </record>
 
         <record id="action_bn_2dfire_order_totalpayvo" model="ir.actions.act_window">
