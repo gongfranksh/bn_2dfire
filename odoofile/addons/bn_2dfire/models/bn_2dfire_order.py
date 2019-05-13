@@ -243,7 +243,8 @@ def get_2dfire_order_detail_from_api(self, procdate):
                         remote_records.append(rc)
         #                        print remote_records
         print(len(remote_records))
-        if len(remote_records) != 0 and local_reord_number == 0:
+        if len(remote_records) != 0 and local_reord_number != len(remote_records):
+        # if len(remote_records) != 0 and local_reord_number == 0:
             print('local_reord_number')
             print(local_reord_number)
 

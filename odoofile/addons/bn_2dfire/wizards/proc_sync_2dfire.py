@@ -77,10 +77,10 @@ class proc_sync_2dfire(models.TransientModel):
         #     }
 
         period = {
-            # 'begin': datetime.datetime.now() - datetime.timedelta(days=begin_day),
-            # 'end': datetime.datetime.now()
-            'begin': datetime.datetime.now() - datetime.timedelta(days=2),
-            'end': datetime.datetime.now() -  datetime.timedelta(days=2),
+            'begin': datetime.datetime.now() - datetime.timedelta(days=begin_day),
+            'end': datetime.datetime.now()
+            # 'begin': datetime.datetime.now() - datetime.timedelta(days=2),
+            # 'end': datetime.datetime.now() -  datetime.timedelta(days=2),
             # 'end': datetime.datetime.now() - datetime.timedelta(days=end_day),
 
         }
