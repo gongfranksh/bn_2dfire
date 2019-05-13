@@ -277,21 +277,10 @@ def insert_2dfire_order(self, recordsets, certifate):
         vals_ordervo = []
         ov = rec['orderVo']
         r01 = self.env['bn.2dfire.order'].search([('ordersn', '=', ov['orderId'])])
-
-        #        if ov['orderId']=='00061367623bb45301623cb9be2104aa':
-        #          print 'test'
+        print(ov['innerCode'])
 
         if r01:
-            break
-
-        # openTime = ov['openTime']
-        # endTime = ov['endTime']
-        #
-        # st = bn_timestamp_to_date(ov['openTime'])
-        # et = bn_timestamp_to_date(ov['endTime'])
-        #
-        # start_time = st.strftime(BN_DATAFORMAT)
-        # end_time = et.strftime(BN_DATAFORMAT)
+            continue
 
         print ( ov['entityId'],
                 ov['innerCode'],
@@ -397,6 +386,14 @@ def insert_2dfire_order_detail(self, recordsets):
         return
     vals = []
     for rec in recordsets:
+        r01 = self.env['bn.2dfire.order.orderlist'].search([('orderId', '=', rec['orderId'])])
+
+        print(rec['orderId'])
+
+        if r01:
+            continue
+
+
         vals = {
             'entityId': rec['entityId'],
             'kind': rec['kind'],
