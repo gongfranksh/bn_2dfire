@@ -22,9 +22,9 @@
     <!--</record>-->
 
 
-     <record id="company_id_2300" model="res.company">
-        <field name="name">BuynowCare-好汇修-厦门店</field>
-        <field name="bncode">00401742</field>
-        <field name="buid">1</field>
-    </record>
+     <!--<record id="company_id_2300" model="res.company">-->
+        <!--<field name="name">BuynowCare-好汇修-厦门店</field>-->
+        <!--<field name="bncode">00401742</field>-->
+        <!--<field name="buid">1</field>-->
+    <!--</record>-->
 </odoo>

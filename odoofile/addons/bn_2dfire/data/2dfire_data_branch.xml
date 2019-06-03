@@ -24,10 +24,10 @@
         <!--<field name="state">confirm</field>-->
     <!--</record>-->
 
-    <record id="bn_2dfire_branch1" model="bn.2dfire.branchs">
-        <field name="name">好会修-厦门店</field>
-        <field name="code">00401742</field>
-        <field name="appids">2</field>
-        <field name="state">confirm</field>
-    </record>
+    <!--<record id="bn_2dfire_branch1" model="bn.2dfire.branchs">-->
+        <!--<field name="name">好会修-厦门店</field>-->
+        <!--<field name="code">00401742</field>-->
+        <!--<field name="appids">2</field>-->
+        <!--<field name="state">confirm</field>-->
+    <!--</record>-->
 </odoo>

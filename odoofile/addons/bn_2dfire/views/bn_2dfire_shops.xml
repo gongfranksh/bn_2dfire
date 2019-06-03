@@ -5,7 +5,8 @@
             <field name="name">bn.2dfire.shops.tree</field>
             <field name="model">bn.2dfire.shops</field>
             <field name="arch" type="xml">
-                <tree string="bn_2dfire_shopes">
+                <!--<tree string="bn_2dfire_shopes" banner_route="/sales/sale_quotation_onboarding_panel" >-->
+                <tree string="bn_2dfire_shopes" banner_route="/bn_2dfire/bn_2dfire_onboarding_panel/" >
                     <field name="code"/>
                     <field name="name"/>
                     <field name="entityId"/>
@@ -48,7 +49,8 @@
             <field name="name">bn.2dfire.shops.kanban</field>
             <field name="model">bn.2dfire.shops</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban class="oe_background_grey o_kanban_dashboard o_account_kanban"
+                        banner_route="/account/account_dashboard_onboarding">
                     <field name="code"/>
                     <field name="name"/>
                     <field name="address"/>

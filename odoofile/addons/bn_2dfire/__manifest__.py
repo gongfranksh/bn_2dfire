@@ -24,6 +24,7 @@
 
     # always loaded
     'data': [
+        'security/security.xml',
         'data/business_data.xml',
         'data/company_data.xml',
         'data/2dfire_data.xml',
@@ -38,8 +39,8 @@
         'views/bn_2dire_order.xml',
         'views/templates.xml',
         'views/pos_order_view.xml',
-        'security/security.xml',
         'security/ir.model.access.csv',
+        'views/bn_2dfire_onboarding_templates.xml',
 
     ],
     # only loaded in demonstration mode

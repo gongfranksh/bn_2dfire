@@ -295,7 +295,7 @@ def insert_2dfire_order(self, recordsets, certifate):
             "openTime": bn_timestamp_to_date(ov['openTime']).strftime(BN_DATAFORMAT),
             "peopleCount": ov['peopleCount'],
             "code": ov['code'],
-            "simpleCode": ov['simpleCode'],
+            # "simpleCode": ov['simpleCode'],
             "endTime": bn_timestamp_to_date(ov['endTime']).strftime(BN_DATAFORMAT),
             "orderFrom": ov['orderFrom'],
             "orderType": ov['orderType'],
