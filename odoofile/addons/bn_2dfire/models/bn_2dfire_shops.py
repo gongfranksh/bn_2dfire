@@ -28,11 +28,11 @@ class bn_2dfire_shops(models.Model):
                                                       default='not_done')
 
     binding_register_branches_state = fields.Selection([('not_done', "Not done"),
-                                                       ('just_done', "Just done"),
-                                                       ('done', "Done"),
-                                                       ('closed', "Closed")],
-                                                      string="State of the binding onboarding panel",
-                                                      default='not_done')
+                                                        ('just_done', "Just done"),
+                                                        ('done', "Done"),
+                                                        ('closed', "Closed")],
+                                                       string="State of the binding onboarding panel",
+                                                       default='not_done')
 
     def get_2dfire_shop_from_api(self):
         print('get_2dfire_shop_from_api')
@@ -85,57 +85,106 @@ class bn_2dfire_shops(models.Model):
     @api.multi
     def btn_authorized_url(self):
         action = {
-                    "type": "ir.actions.act_url",
-                    "url": "https://open.2dfire.com/page/auth.html#/login?appId=35468986",
-                    "target": "new",
-                    # "target": "self",
-                 }
+            "type": "ir.actions.act_url",
+            "url": "https://open.2dfire.com/page/auth.html#/login?appId=35468986",
+            "target": "new",
+            # "target": "self",
+        }
         return action
 
 
 
 
     @api.multi
+    def get_authorize_binding_shops(self, storeids):
+
+        bindinglist = []
+        shoplist = self.env['bn.2dfire.shops'].search([('id', 'in', storeids)])
+        for shop in shoplist:
+            branch = self.env['bn.2dfire.branchs'].search([('code', '=', shop['entityId'])])
+            val = {'shop_id': shop.id, 'branch_id': branch.id}
+            bindinglist.append(val)
+
+        return bindinglist
+
+    @api.multi
     def btn_insert_branches(self):
-            b01=self.env['bn.2dfire.branchs'].search_bycode(self.entityId)
-            if not b01:
-                appids = self.env['bn.2dfire.appid'].search([('code', '=', 'hq-it')]).id
-                companyids = self.env.user.company_id.id
+        b01 = self.env['bn.2dfire.branchs'].search_bycode(self.entityId)
+        if not b01:
+            appids = self.env['bn.2dfire.appid'].search([('code', '=', 'hq-it')]).id
+            companyids = self.env.user.company_id.id
 
-                branch_ids = self.env['bn.2dfire.branchs'].create(
-                    {'code': self.entityId, 'name': self.name, 'appids': appids, 'company_id': companyids})
+            branch_ids = self.env['bn.2dfire.branchs'].create(
+                {'code': self.entityId, 'name': self.name, 'appids': appids, 'company_id': companyids})
 
-                action = {
-                    'type': 'ir.actions.act_window',
-                    'view_mode': 'form',
-                    "views": [[False, "form"]],
-                    'res_model': 'bn.2dfire.branchs',
-                    'res_id': branch_ids.id,
-                    'target': 'new',
-                }
+            action = {
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                "views": [[False, "form"]],
+                'res_model': 'bn.2dfire.branchs',
+                'res_id': branch_ids.id,
+                'target': 'new',
+            }
 
-                self.write({'isAdd': True})
-                return action
-            else:
-                raise exceptions.RedirectWarning("该门店已经加入同步列表")
+            self.write({'isAdd': True})
+            return action
+        else:
+            raise exceptions.RedirectWarning("该门店已经加入同步列表")
 
     @api.model
     def action_close_onboarding(self):
         """ Mark the onboarding panel as closed. """
         self.onboarding_state = 'closed'
 
+    # @api.multi
+    @api.model
+    def action_binding_branches(self):
+        action = self.env.ref('bn_2dfire.bn_2dfire_binding_shops_wizard_action').read()[0]
+        return action
 
+    @api.model
+    def action_sync_data(self):
+        action = self.env.ref('bn_2dfire.action_proc_sync_2dfire').read()[0]
+        return action
+
+
+
+    @api.model
+    def action_2dfire_register_url(self):
+        action = {
+            "type": "ir.actions.act_url",
+            "url": "https://open.2dfire.com/page/auth.html#/login?appId=35468986",
+            "target": "new",
+            # "target": "self",
+        }
+        return action
+
+
+    @api.model
+    def action_binding_branches_directly(self):
+        action = {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'src_model': 'bn.2dfire.shops',
+            'res_model': 'bn.2dfire.binding.wizard',
+            # 'res_id': self.id,
+            'key2': 'client_action_multi',
+            'target': 'new',
+            'context': self.env.context,
+            # 'flags': {'initial_mode': 'edit'},
+        }
+        return action
 
     def get_and_update_2dfire_onboarding_state(self):
-        steps=[
+        steps = [
             'import_register_branches_state',
             'binding_register_branches_state',
         ]
-        rst=self.get_and_update_onbarding_state('import_register_branches_state',steps)
-            # self.get_and_update_onbarding_state()
+        rst = self.get_and_update_onbarding_state('import_register_branches_state', steps)
+        # self.get_and_update_onbarding_state()
         print(rst)
         return rst
-
 
     def get_and_update_onbarding_state(self, onboarding_state, steps_states):
         """ Needed to display onboarding animations only one time. """
@@ -162,6 +211,5 @@ class bn_2dfire_shops(models.Model):
             else:
                 old_values['onboarding_state'] = 'done'
             self[onboarding_state] = 'done'
-            print("get_and_update_onbarding_state ===> "+old_values)
+            print("get_and_update_onbarding_state ===> " + old_values)
         return old_values
-

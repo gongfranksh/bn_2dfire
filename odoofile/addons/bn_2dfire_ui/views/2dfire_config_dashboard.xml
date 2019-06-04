@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_pos_config_kanban" model="ir.ui.view">
+            <field name="name">bn.2dfire.shops.dashbord</field>
+            <field name="model">bn.2dfire.shops</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="bn_2dfire.bn_2dfire_shops_view_trees"/>
+            <!--<field name="arch" type="xml">-->
+                <!--<data>-->
+                    <!--<attribute name="banner_route"></attribute>-->
+                <!--</data>-->
+            <!--</field>-->
+        </record>
+    </data>
+</odoo>

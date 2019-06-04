@@ -41,6 +41,8 @@
         'views/pos_order_view.xml',
         'security/ir.model.access.csv',
         'views/bn_2dfire_onboarding_templates.xml',
+        'views/bn_2dfire_binding_branches_wizard.xml',
+
 
     ],
     # only loaded in demonstration mode

@@ -49,8 +49,7 @@
             <field name="name">bn.2dfire.shops.kanban</field>
             <field name="model">bn.2dfire.shops</field>
             <field name="arch" type="xml">
-                <kanban class="oe_background_grey o_kanban_dashboard o_account_kanban"
-                        banner_route="/account/account_dashboard_onboarding">
+                <kanban >
                     <field name="code"/>
                     <field name="name"/>
                     <field name="address"/>
@@ -146,7 +145,7 @@
             <field name="res_model">bn.2dfire.shops</field>
             <field name="view_mode">tree,form,kanban</field>
             <field name="view_type">form</field>
-            <field name="view_id" ref="bn_2dfire_shops_kanban_view"/>
+            <field name="view_id" ref="bn_2dfire.bn_2dfire_shops_kanban_view"/>
             <!--<field name="view_id" ref="bn_2dfire_shops_view_trees"/>-->
         </record>
 
