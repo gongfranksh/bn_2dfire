@@ -2,8 +2,8 @@
 
 from odoo import models, fields, api
 
-class bn_flooor(models.Model):
-    _name = 'bn.flooor'
+class bn_floor(models.Model):
+    _name = 'bn.floor'
     code = fields.Char(string=u'编号', required=True)
     name = fields.Char(string=u'名称', required=True)
     lngitemvalue = fields.Integer(string=u'内部值', required=True)
@@ -35,6 +35,8 @@ class bn_pmplan(models.Model):
     lngfloor  = fields.Integer(string=u'楼层')
     dtActiveDate  = fields.Datetime(string=u'激活日期')
     dtCancleDate  = fields.Datetime(string=u'取消日期')
+    shopid = fields.Many2one( 'res.company', u'门店', required=True)
+    floorid = fields.Many2one( 'bn.floor', u'楼层', required=True)
 
 class res_company(models.Model):
     _name = 'res.company'
