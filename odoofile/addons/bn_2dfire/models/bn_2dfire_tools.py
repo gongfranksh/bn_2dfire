@@ -32,6 +32,7 @@ class bn_2dfire_connect_Request(object):
         }
         time.sleep(1)  # 休眠1秒
         obj = requests.post(url, headers=my_headers, data=post_date)
+        # obj = requests.post(url, headers=my_headers, data=post_date)
         result = obj.content.decode("utf-8")
         return json.loads(result)
 

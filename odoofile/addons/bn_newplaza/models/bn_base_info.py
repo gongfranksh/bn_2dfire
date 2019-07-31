@@ -79,3 +79,11 @@ class res_company(models.Model):
     bn_strShortName=fields.Char(string=u'店简称' )
     bn_sign_contractor_desc=fields.Char(string=u'换约信息' )
     bn_sign_contractor_date=fields.Datetime(string=u'换约日期' )
+
+    @api.multi
+    def query(self,res):
+        rst=self.env['res.company'].search([('lngshopid', '=', res)])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst

@@ -306,52 +306,59 @@ def insert_2dfire_order(self, recordsets, certifate):
         vals_order_insert.update({"orderVo": vals_ordervo})
 
         vals_totalPayVo = []
+        if 'totalPayVo' in rec:
+            totalPayVo = rec['totalPayVo']
 
-        totalPayVo = rec['totalPayVo']
-
-        totalPayVo_set = {
-            'currDate': bn_timestamp_to_date(totalPayVo['currDate']).strftime(BN_DATAFORMAT),
-            "sourceAmount": totalPayVo['sourceAmount'],
-            "discountAmount": totalPayVo['discountAmount'],
-            "resultAmount": totalPayVo['resultAmount'],
-            "receiveAmount": totalPayVo['receiveAmount'],
-            "outFee": totalPayVo['outFee'],
-            "operateDate": bn_timestamp_to_date(totalPayVo['operateDate']).strftime(BN_DATAFORMAT),
-            "invoice": totalPayVo['invoice'],
-            "couponDiscount": totalPayVo['couponDiscount'],
-        }
-        vals_totalPayVo.append((0, 0, totalPayVo_set))
-        vals_order_insert.update({"totalPayVo": vals_totalPayVo})
+            totalPayVo_set = {
+                'currDate': bn_timestamp_to_date(totalPayVo['currDate']).strftime(BN_DATAFORMAT),
+                "sourceAmount": totalPayVo['sourceAmount'],
+                "discountAmount": totalPayVo['discountAmount'],
+                "resultAmount": totalPayVo['resultAmount'],
+                "receiveAmount": totalPayVo['receiveAmount'],
+                "outFee": totalPayVo['outFee'],
+                "operateDate": bn_timestamp_to_date(totalPayVo['operateDate']).strftime(BN_DATAFORMAT),
+                "invoice": totalPayVo['invoice'],
+                "couponDiscount": totalPayVo['couponDiscount'],
+            }
+            vals_totalPayVo.append((0, 0, totalPayVo_set))
+            vals_order_insert.update({"totalPayVo": vals_totalPayVo})
 
         #插入支付清单
         vals_payVoList = []
-        for payVoList in rec['payVoList']:
-            payVoList_set = {
-                'entityId': payVoList['entityId'],
-                "type": payVoList['type'],
-                "kindPayId": payVoList['kindPayId'],
-                "kindPayName": payVoList['kindPayName'],
-                "kindPaySortName": payVoList['kindPaySortName'],
-                "fee": payVoList['fee'],
-                "operator": payVoList['operator'],
-                "payTime": bn_timestamp_to_date(payVoList['payTime']).strftime(BN_DATAFORMAT),
-                "pay": payVoList['pay'],
-                "charge": payVoList['charge'],
-            }
-            vals_payVoList.append((0, 0, payVoList_set))
-        vals_order_insert.update({"payVo": vals_payVoList})
+
+        if 'payVoList'  in rec:
+        # if not rec['payVoList']:
+        #     print ('hello')
+
+            for payVoList in rec['payVoList']:
+                payVoList_set = {
+                    'entityId': payVoList['entityId'],
+                    "type": payVoList['type'],
+                    "kindPayId": payVoList['kindPayId'],
+                    "kindPayName": payVoList['kindPayName'],
+                    "kindPaySortName": payVoList['kindPaySortName'],
+                    "fee": payVoList['fee'],
+                    "operator": payVoList['operator'],
+                    "payTime": bn_timestamp_to_date(payVoList['payTime']).strftime(BN_DATAFORMAT),
+                    "pay": payVoList['pay'],
+                    "charge": payVoList['charge'],
+                }
+                vals_payVoList.append((0, 0, payVoList_set))
+            vals_order_insert.update({"payVo": vals_payVoList})
 
         #插入收款方式清单
         vals_kindPayVoList = []
-        for kindPayVoList in rec['kindPayVoList']:
-            kindPayVoList_set = {
-                'name': kindPayVoList['name'],
-                "kind": kindPayVoList['kind'],
-                "kindid": kindPayVoList['id'],
-                "kindPaySortNm": kindPayVoList['kindPaySortNm'],
-            }
-            vals_kindPayVoList.append((0, 0, kindPayVoList_set))
-        vals_order_insert.update({"kindpayvo": vals_kindPayVoList})
+        if 'kindPayVoList'  in rec:
+
+            for kindPayVoList in rec['kindPayVoList']:
+                kindPayVoList_set = {
+                    'name': kindPayVoList['name'],
+                    "kind": kindPayVoList['kind'],
+                    "kindid": kindPayVoList['id'],
+                    "kindPaySortNm": kindPayVoList['kindPaySortNm'],
+                }
+                vals_kindPayVoList.append((0, 0, kindPayVoList_set))
+            vals_order_insert.update({"kindpayvo": vals_kindPayVoList})
 
         #插入账单明细
         vals_serviceBillVo = []

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+
 from odoofile.addons.bn_newplaza.models.Entity.Floor import Floor
 from odoofile.addons.bn_newplaza.models.Entity.ResourceType import ResourceType
 from odoofile.addons.bn_newplaza.models.Entity.SaleArea import SaleArea
+from odoofile.addons.bn_newplaza.models.Entity.Shops import Shops
 
 
 def proc_sync_floor(self):
@@ -40,4 +42,18 @@ def proc_sync_salearea(self):
         rst= self.env['bn.salearea'].query(res)
         if rst is None:
             self.env['bn.salearea'].create(res)
+    return True
+
+def proc_sync_shop(self):
+    np = Shops()
+    shops = np.get_all()
+    for shop in shops:
+        res = {'lngshopid': shop['lngshopid'],
+               'name': shop['strshopname'],
+               'bn_strShopName': shop['strshopname'],
+               'bn_strShortName': shop['strShortName'],
+                    }
+        rst= self.env['res.company'].query(shop['lngshopid'])
+        if rst is None:
+            self.env['res.company'].create(res)
     return True
