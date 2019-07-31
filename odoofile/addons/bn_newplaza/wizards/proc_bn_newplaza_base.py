@@ -30,3 +30,11 @@ class bn_newplaza_proc_wizard(models.TransientModel):
     def sync_pm_shop_button(self):
         proc_sync_shop(self)
         pass
+
+    @api.multi
+    def sync_all_button(self):
+        proc_sync_floor(self)
+        proc_sync_resourcetype(self)
+        proc_sync_salearea(self)
+        proc_sync_shop(self)
+        pass

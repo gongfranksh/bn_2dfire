@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-
 from odoofile.addons.bn_newplaza.models.Entity.Floor import Floor
 from odoofile.addons.bn_newplaza.models.Entity.ResourceType import ResourceType
 from odoofile.addons.bn_newplaza.models.Entity.SaleArea import SaleArea
 from odoofile.addons.bn_newplaza.models.Entity.Shops import Shops
+from odoofile.addons.bn_newplaza.models.bn_decorator import bnfunlog
 
 
+@bnfunlog('')
 def proc_sync_floor(self):
     np = Floor()
     floors = np.get_floor_all()
@@ -19,6 +20,8 @@ def proc_sync_floor(self):
             self.env['bn.floor'].create(res)
     return True
 
+
+@bnfunlog('')
 def proc_sync_resourcetype(self):
     np = ResourceType()
     resources = np.get_all()
@@ -32,6 +35,7 @@ def proc_sync_resourcetype(self):
             self.env['bn.resourcetype'].create(res)
     return True
 
+@bnfunlog('')
 def proc_sync_salearea(self):
     np = SaleArea()
     salesareas = np.get_all()
@@ -44,6 +48,7 @@ def proc_sync_salearea(self):
             self.env['bn.salearea'].create(res)
     return True
 
+@bnfunlog('')
 def proc_sync_shop(self):
     np = Shops()
     shops = np.get_all()
