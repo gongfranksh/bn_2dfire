@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+from odoofile.addons.bn_newplaza.models.Entity.BnEntity import BnEntity
+
+
+class RptFloorPlan(BnEntity):
+
+    def __init__(self):
+        BnEntity.__init__(self)
+
+    def get_all(self,procdate):
+        sql ="""
 declare @dtARDate datetime
 
 declare @shop table
@@ -20,7 +31,7 @@ insert into @shop
       select 1109
     ) shop
 
-select @dtARDate = '2019-7-22'
+select @dtARDate = '{0}'
 
 
 select a.*,b.decArBalance from (
@@ -185,4 +196,11 @@ from (
      ) t
 group by lngshopId, lngfloor, strplanid,  strResourceType
 
-	  ) b on a.lngShopID=b.lngShopID and a.strPlanID=b.strPlanID
+	  ) b on a.lngShopID=b.lngShopID and a.strPlanID=b.strPlanID        
+        
+        """
+        sql=sql.format(procdate)
+        # print(sql)
+        rst = self.get_remote_result_by_sql(sql)
+        return rst
+

@@ -1,4 +1,4 @@
-import urllib.request
-response = urllib.request.urlopen('https://www.python.org')
-# print(response.getheaders())
-# print(response.getheader('Server'))
+
+list=['1','2','3','a','b','c']
+# print("in (%s)" % "'%s',".join(list))
+print("in (%s)" % ','.join(["'%s'" % item for item in list]))

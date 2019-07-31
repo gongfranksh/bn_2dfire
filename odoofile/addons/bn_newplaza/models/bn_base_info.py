@@ -8,12 +8,6 @@ class bn_floor(models.Model):
     name = fields.Char(string=u'名称', required=True)
     lngitemvalue = fields.Integer(string=u'内部值', required=True)
 
-    # @api.one
-    # def add(self,res):
-    #     rst=self.env['bn.floor'].search([('code', '=', res['code'])])
-    #     if rst is None:
-    #         self.env['bn.floor'].create(res)
-
     @api.multi
     def query(self,res):
         rst=self.env['bn.floor'].search([('code', '=', res['code'])])
@@ -22,9 +16,22 @@ class bn_floor(models.Model):
         else:
             return  rst
 
+    @api.multi
+    def query_by_id(self,res):
+        rst=self.env['bn.floor'].search([('name', '=', res)])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
 
 
-
+    @api.multi
+    def query_by_value(self,res):
+        rst=self.env['bn.floor'].search([('lngitemvalue', '=', res)])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
 
 class bn_resourcetype(models.Model):
     _name = 'bn.resourcetype'
@@ -40,6 +47,15 @@ class bn_resourcetype(models.Model):
         else:
             return  rst
 
+    @api.multi
+    def query_by_id(self,res):
+        rst=self.env['bn.resourcetype'].search([('itemcode', '=', res)])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
+
+
 class bn_salearea(models.Model):
     _name = 'bn.salearea'
     code = fields.Char(string=u'编号', required=True)
@@ -52,7 +68,13 @@ class bn_salearea(models.Model):
         else:
             return  rst
 
-
+    @api.multi
+    def query_by_id(self,res):
+        rst=self.env['bn.salearea'].search([('code', '=', res)])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
 
 class bn_pmplan(models.Model):
     _name = 'bn.pmplan'
@@ -63,13 +85,23 @@ class bn_pmplan(models.Model):
     decQuantity  = fields.Float(string=u'面积')
     decSimpleShopPrice = fields.Float(string=u'底价')
     lngPlanTypeId=fields.Integer(string=u'席位类型')
-    blnIsCancel  = fields.Selection([('1', '作废'), ('0', '有效')], string='作废标志', default='0')
+    blnIsCancel  = fields.Selection([(1, '作废'), (0, '有效')], string='作废标志', default='0')
     strDescription  = fields.Char(string=u'描述')
     lngfloor  = fields.Integer(string=u'楼层')
     dtActiveDate  = fields.Datetime(string=u'激活日期')
     dtCancleDate  = fields.Datetime(string=u'取消日期')
     shopid = fields.Many2one( 'res.company', u'门店', required=True)
     floorid = fields.Many2one( 'bn.floor', u'楼层', required=True)
+
+
+    @api.multi
+    def query_by_id(self, res):
+        rst = self.env['bn.pmplan'].search([('code', '=', res)])
+        if len(rst) == 0:
+            return None
+        else:
+            return rst
+
 
 class res_company(models.Model):
     _name = 'res.company'
@@ -87,3 +119,4 @@ class res_company(models.Model):
             return None
         else:
             return  rst
+
