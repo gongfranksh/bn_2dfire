@@ -8,17 +8,50 @@ class bn_floor(models.Model):
     name = fields.Char(string=u'名称', required=True)
     lngitemvalue = fields.Integer(string=u'内部值', required=True)
 
+    # @api.one
+    # def add(self,res):
+    #     rst=self.env['bn.floor'].search([('code', '=', res['code'])])
+    #     if rst is None:
+    #         self.env['bn.floor'].create(res)
+
+    @api.multi
+    def query(self,res):
+        rst=self.env['bn.floor'].search([('code', '=', res['code'])])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
+
+
+
+
+
 class bn_resourcetype(models.Model):
     _name = 'bn.resourcetype'
     code = fields.Char(string=u'编号', required=True)
     name = fields.Char(string=u'名称', required=True)
     itemcode = fields.Char(string=u'内部编号', required=True)
 
+    @api.multi
+    def query(self,res):
+        rst=self.env['bn.resourcetype'].search([('code', '=', res['code'])])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
 
 class bn_salearea(models.Model):
     _name = 'bn.salearea'
     code = fields.Char(string=u'编号', required=True)
     name = fields.Char(string=u'名称', required=True)
+    @api.multi
+    def query(self,res):
+        rst=self.env['bn.salearea'].search([('code', '=', res['code'])])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
+
 
 
 class bn_pmplan(models.Model):

@@ -58,7 +58,7 @@
             <field name="model">bn.resourcetype</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="code"/>
+                    <field name="itemcode"/>
                     <field name="name"/>
                 </tree>
             </field>

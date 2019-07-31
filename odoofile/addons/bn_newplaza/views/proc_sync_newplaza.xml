@@ -15,6 +15,7 @@
                         <button name="sync_resourcetype_button" string="资源类型" type="object" class="btn-primary"/>
                         <button name="sync_pm_salearea_button" string="业种" type="object" class="btn-primary"/>
                         <button name="sync_pm_plan_button" string="席位" type="object" class="btn-primary"/>
+                        <button name="sync_pm_shop_button" string="门店" type="object" class="btn-primary"/>
                     </footer>
                 </form>
             </field>
