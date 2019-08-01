@@ -102,7 +102,7 @@
         </record>
 
 
-  <!--- bn_plantype -->
+        <!--- bn_plantype -->
 
         <!-- 列表视图 -->
         <record id="bn_newplaza_plantype_view_trees" model="ir.ui.view">
@@ -128,7 +128,7 @@
         </record>
 
 
-<!--- bn_shopplanhymonth -->
+        <!--- bn_shopplanhymonth -->
 
         <!-- 列表视图 -->
         <record id="bn_newplaza_shopplanhymonth_view_trees" model="ir.ui.view">
@@ -155,35 +155,47 @@
             <field name="view_id" ref="bn_newplaza_shopplanhymonth_view_trees"/>
         </record>
 
-        <menuitem name="商管基本资料->席位"
+       <menuitem name="商管->门店"
+                  id="bn_newplaza_setting_store_menu"
+                  sequence="1"
+                  parent="bn_newplaza_base_menu"
+                  action="base.action_res_company_form"/>
+
+        <menuitem name="商管->席位"
                   id="bn_newplaza_setting_plan_menu"
+                  sequence="10"
                   parent="bn_newplaza_base_menu"
                   action="action_bn_newplaza_pmplan"/>
 
-       <menuitem name="商管基本资料->席位类型"
+        <menuitem name="商管->席位类型"
                   id="bn_newplaza_setting_plantype_menu"
+                  sequence="20"
                   parent="bn_newplaza_base_menu"
                   action="action_bn_newplaza_plantype"/>
 
 
-        <menuitem name="商管基本资料->楼层"
+        <menuitem name="商管->楼层"
                   id="bn_newplaza_setting_floor_menu"
                   parent="bn_newplaza_base_menu"
+                  sequence="60"
                   action="action_bn_newplaza_floor"/>
 
-        <menuitem name="商管基本资料->资源类型"
+        <menuitem name="商管->资源类型"
                   id="bn_newplaza_setting_resourcetype_menu"
+                  sequence="40"
                   parent="bn_newplaza_base_menu"
                   action="action_bn_newplaza_resourcetype"/>
 
-        <menuitem name="商管基本资料->业种"
+        <menuitem name="商管->业种"
                   id="bn_newplaza_setting_salearea_menu"
                   parent="bn_newplaza_base_menu"
+                  sequence="50"
                   action="action_bn_newplaza_salearea"/>
 
 
-        <menuitem name="商管基本资料->换约时间"
+        <menuitem name="商管->换约时间"
                   id="bn_newplaza_setting_shopplanhymonth_menu"
+                  sequence="3"
                   parent="bn_newplaza_base_menu"
                   action="action_bn_newplaza_shopplanhymonth"/>
     </data>

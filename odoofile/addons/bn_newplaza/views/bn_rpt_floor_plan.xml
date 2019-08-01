@@ -50,6 +50,7 @@
 
         <menuitem name="1--->楼层席位分析报表"
                   id="bn_newplaza_rpt_floor_plan_menu"
+                  sequence="10"
                   parent="bn_newplaza_rpt_menu"
                   action="action_bn_newplaza_rptfloorplan"/>
 
