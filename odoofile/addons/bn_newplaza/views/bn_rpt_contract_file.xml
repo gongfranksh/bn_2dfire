@@ -12,6 +12,8 @@
                     <field name="contract_vol" />
                     <field name="filed" />
                     <field name="unfiled" />
+                    <!--<field name="unfiled_rate"/>-->
+                    <field name="unfiled_rate_title"/>
                 </tree>
             </field>
         </record>
@@ -32,6 +34,7 @@
                     <field name="t2sdays" type="measure"/>
                     <field name="stondays" type="measure"/>
                     <field name="nabove" type="measure"/>
+                    <field name="unfiled_rate" type="measure"/>
                 </pivot>
             </field>
         </record>
