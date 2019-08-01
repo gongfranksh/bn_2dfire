@@ -102,10 +102,68 @@
         </record>
 
 
+  <!--- bn_plantype -->
+
+        <!-- 列表视图 -->
+        <record id="bn_newplaza_plantype_view_trees" model="ir.ui.view">
+            <field name="name">bn.plantype.tree</field>
+            <field name="model">bn.plantype</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 表单视图 -->
+
+        <!-- Action -->
+        <record model="ir.actions.act_window" id="action_bn_newplaza_plantype">
+            <field name="name">席位类型</field>
+            <field name="res_model">bn.plantype</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="bn_newplaza_plantype_view_trees"/>
+        </record>
+
+
+<!--- bn_shopplanhymonth -->
+
+        <!-- 列表视图 -->
+        <record id="bn_newplaza_shopplanhymonth_view_trees" model="ir.ui.view">
+            <field name="name">bn.shopplanhymonth.tree</field>
+            <field name="model">bn.shopplanhymonth</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="shopid"/>
+                    <field name="plantypeid"/>
+                    <field name="hy_month"/>
+                    <field name="hy_year"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 表单视图 -->
+
+        <!-- Action -->
+        <record model="ir.actions.act_window" id="action_bn_newplaza_shopplanhymonth">
+            <field name="name">换约时间</field>
+            <field name="res_model">bn.shopplanhymonth</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="bn_newplaza_shopplanhymonth_view_trees"/>
+        </record>
+
         <menuitem name="商管基本资料->席位"
                   id="bn_newplaza_setting_plan_menu"
                   parent="bn_newplaza_base_menu"
                   action="action_bn_newplaza_pmplan"/>
+
+       <menuitem name="商管基本资料->席位类型"
+                  id="bn_newplaza_setting_plantype_menu"
+                  parent="bn_newplaza_base_menu"
+                  action="action_bn_newplaza_plantype"/>
 
 
         <menuitem name="商管基本资料->楼层"
@@ -123,6 +181,11 @@
                   parent="bn_newplaza_base_menu"
                   action="action_bn_newplaza_salearea"/>
 
+
+        <menuitem name="商管基本资料->换约时间"
+                  id="bn_newplaza_setting_shopplanhymonth_menu"
+                  parent="bn_newplaza_base_menu"
+                  action="action_bn_newplaza_shopplanhymonth"/>
     </data>
 
 </odoo>

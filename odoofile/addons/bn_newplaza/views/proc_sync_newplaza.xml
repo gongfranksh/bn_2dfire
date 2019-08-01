@@ -20,6 +20,7 @@
                         <button name="sync_pm_plan_button" string="席位" type="object" class="btn-primary"/>
                         <button name="sync_pm_shop_button" string="门店" type="object" class="btn-primary"/>
                         <button name="sync_floor_plan" string="席位楼层数据导入" type="object" class="btn-primary"/>
+                        <button name="sync_contract_file" string="合同未归档" type="object" class="btn-primary"/>
                         <button name="sync_all_button" string="全部" type="object" class="btn-primary"/>
                     </footer>
                 </form>

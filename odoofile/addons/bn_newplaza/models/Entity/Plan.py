@@ -19,3 +19,22 @@ class Plan(BnEntity):
         rst = self.get_remote_result_by_sql(sql)
         return rst
 
+    def get_plantype(self):
+        sql = """
+        select
+        strenumid, stritemname, lngitemvalue
+        from Pm_Enum where
+        lngEnumTypeID = 8
+        """
+        # print(sql)
+        rst = self.get_remote_result_by_sql(sql)
+        return rst
+
+    def get_ShopPlanHyMonth(self):
+        sql = """
+            select lngshopid,lngplantype,strHyYear,strHyMonths 
+            from Pm_ShopPlanHyMonth
+        """
+        # print(sql)
+        rst = self.get_remote_result_by_sql(sql)
+        return rst

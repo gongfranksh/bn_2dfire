@@ -55,6 +55,28 @@ class bn_resourcetype(models.Model):
         else:
             return  rst
 
+class bn_plantype(models.Model):
+    _name = 'bn.plantype'
+    code = fields.Char(string=u'编号', required=True)
+    name = fields.Char(string=u'名称', required=True)
+    itemvalue = fields.Char(string=u'内部编号', required=True)
+
+    @api.multi
+    def query(self,res):
+        rst=self.env['bn.plantype'].search([('code', '=',res)])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
+
+    @api.multi
+    def query_by_id(self,res):
+        rst=self.env['bn.plantype'].search([('itemvalue', '=', res)])
+        if len(rst)==0 :
+            return None
+        else:
+            return  rst
+
 
 class bn_salearea(models.Model):
     _name = 'bn.salearea'
@@ -120,3 +142,23 @@ class res_company(models.Model):
         else:
             return  rst
 
+
+
+class bn_shopplanhymonth(models.Model):
+    _name = 'bn.shopplanhymonth'
+    hy_month  = fields.Char(string=u'换约月份')
+    hy_year  = fields.Char(string=u'换约年份')
+    shopid = fields.Many2one( 'res.company', u'门店', required=True)
+    plantypeid = fields.Many2one( 'bn.plantype', u'楼层', required=True)
+
+    @api.multi
+    def query(self, res):
+        rst = self.env['bn.shopplanhymonth'].search([
+                                                     ['shopid',  '=', res['shopid']],
+                                                     ['plantypeid', '=', res['plantypeid']]
+                                                     ]
+                                                    )
+        if len(rst) == 0:
+            return None
+        else:
+            return rst

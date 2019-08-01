@@ -142,3 +142,60 @@ def proc_sync_floorplan_data(self):
         self.env['bn.rptfloorplan'].create(res)
         i+=1
     return True
+
+
+@bnfunlog('')
+def proc_sync_plantype(self):
+    task_plan = Plan()
+    plantype_list= task_plan.get_plantype()
+    for pt in plantype_list:
+        res = {'code': pt['strenumid'],
+               'name': pt['stritemname'],
+               'itemvalue': pt['lngitemvalue'],
+                 }
+        rst= self.env['bn.plantype'].query(pt['strenumid'])
+        if rst is None:
+            self.env['bn.plantype'].create(res)
+
+    hylist=task_plan.get_ShopPlanHyMonth()
+    for line in hylist:
+        shopid = self.env['res.company'].query(line['lngshopid']).id
+        plantypeid = self.env['bn.plantype'].query_by_id(line['lngplantype']).id
+
+        res = {'hy_month': line['strHyMonths'],
+               'hy_year': line['strHyYear'],
+               'shopid': shopid,
+               'plantypeid': plantypeid,
+               }
+        rst=self.env['bn.shopplanhymonth'].query(res)
+        if rst is None:
+            self.env['bn.shopplanhymonth'].create(res)
+    return True
+
+
+@bnfunlog('')
+def proc_contract_file(self):
+    np = Shops()
+    contlist = np.get_contract_file(self.dtDate)
+    i=0
+    for line in contlist:
+        shopid = self.env['res.company'].query(line['lngshopid']).id
+        plantypeid = self.env['bn.plantype'].query_by_id(line['lngPlanTypeID']).id
+        print('contract_file_data==>current:' + str(i) + '-/-total:' + str(len(contlist)))
+        res={
+            'dtDate': self.dtDate,
+            'shop_id': shopid,
+            'plantype_id': plantypeid,
+            'contract_vol': line['contractvol'],
+            'filed': line['filed'],
+            'unfiled': line['unfiled'],
+            'change_month': line['changmonth'],
+            'tdays': line['tdays'],
+            't2sdays': line['t2sdays'],
+            'stondays': line['stondays'],
+            'nabove': line['nabove'],
+        }
+        self.env['bn.rptcontractfile'].create(res)
+        i+=1
+
+    return True
