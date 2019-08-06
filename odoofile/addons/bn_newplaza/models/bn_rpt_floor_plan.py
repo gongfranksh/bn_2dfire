@@ -72,7 +72,7 @@ class bn_RptFloorPlan(models.Model):
     @api.depends('contract_id')
     def _compute_unrent_flag(self):
         for rec in self:
-            if rec.contract_id is None:
+            if not rec.contract_id :
                 rec.unrent_flag='空租'
             else:
                 rec.unrent_flag='已租'
