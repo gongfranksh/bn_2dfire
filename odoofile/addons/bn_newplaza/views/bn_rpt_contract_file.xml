@@ -23,7 +23,8 @@
             <field name="name">bn.rptcontractfile.pivot</field>
             <field name="model">bn.rptcontractfile</field>
             <field name="arch" type="xml">
-                <pivot string="Pipeline Analysis" disable_linking="True">
+                <!--<pivot string="Pipeline Analysis" disable_linking="True">-->
+                <pivot string="Pipeline Analysis" >
                     <field name="dtDate" interval="month" type="col"/>
                     <field name="shop_id" type="row"/>
                     <field name="plantype_id" type="row"/>

@@ -7,7 +7,7 @@ import pymssql
 # reload(sys)
 # sys.setdefaultencoding("utf-8")
 #
-from odoofile.addons.bn_newplaza.models.Entity import db_host, db_user, db_pwd, db_dbname
+from ..Entity import db_host, db_user, db_pwd, db_dbname
 
 
 

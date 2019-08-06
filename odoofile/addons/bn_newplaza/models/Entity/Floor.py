@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoofile.addons.bn_newplaza.models.Entity.BnEntity import BnEntity
+from .BnEntity import BnEntity
 
 
 class Floor(BnEntity):

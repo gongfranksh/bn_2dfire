@@ -3,7 +3,7 @@ import datetime
 
 from odoo import models, api, fields
 from odoo.fields import Field
-from odoofile.addons.bn_newplaza.wizards.proc_bn_newplaza_method import proc_sync_floor, proc_sync_resourcetype, \
+from .proc_bn_newplaza_method import proc_sync_floor, proc_sync_resourcetype, \
     proc_sync_salearea, proc_sync_shop, proc_sync_floorplan_data, proc_sync_pmplan, proc_sync_plantype, \
     proc_contract_file
 

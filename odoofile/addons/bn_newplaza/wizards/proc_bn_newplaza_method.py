@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from odoofile.addons.bn_newplaza.models.Entity.Floor import Floor
-from odoofile.addons.bn_newplaza.models.Entity.Plan import Plan
-from odoofile.addons.bn_newplaza.models.Entity.ResourceType import ResourceType
-from odoofile.addons.bn_newplaza.models.Entity.RptFloorPlan import RptFloorPlan
-from odoofile.addons.bn_newplaza.models.Entity.SaleArea import SaleArea
-from odoofile.addons.bn_newplaza.models.Entity.Shops import Shops
-from odoofile.addons.bn_newplaza.models.bn_decorator import bnfunlog
+from ..models.Entity.Floor  import Floor
+from ..models.Entity.Plan import Plan
+from ..models.Entity.ResourceType import ResourceType
+from ..models.Entity.RptFloorPlan import RptFloorPlan
+from ..models.Entity.SaleArea import SaleArea
+from ..models.Entity.Shops import Shops
+from ..models.bn_decorator import bnfunlog
 
 
 @bnfunlog('')
