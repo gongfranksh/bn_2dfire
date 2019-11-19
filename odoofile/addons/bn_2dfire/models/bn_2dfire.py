@@ -99,7 +99,12 @@ def bnc_insert_product(self):
         i=0
         for pids in productids:
                 i=i+1
+
+                if not pids['code']:
+                     continue
+
                 print (i,len(productids),pids['store_code'],pids['name'])
+
                 res= {
                     'code' : pids['code'],
                     'name' : pids['name'],
@@ -122,7 +127,8 @@ def bnc_insert_product(self):
                     }
                 #检查是插入还是更新            
                 r01=self.env['product.template'].search_bycode(pids['code'])
-                if r01:            
+                if r01:
+                    # print(r01.id)
                     r01.write(res)
     #                print 'update'
     #                print res            

@@ -386,6 +386,8 @@ def insert_2dfire_order(self, recordsets, certifate):
 
         print(vals_order_insert)
         self.env['bn.2dfire.order'].create(vals_order_insert)
+        self.env.cr.commit()
+
     return True
 
 
@@ -448,3 +450,65 @@ def get_local_record_number_2dfire_order_detail(self, orders):
             return recno
         else:
             return 0
+
+
+def check_pos_line_not_in_pos_master(self):
+    sql="""
+                SELECT
+                    "orderId",
+                    "menuId",
+                    price,
+                    num,
+                    "ratioFee",
+                    NAME,
+                    "entityId" 
+                FROM
+                    bn_2dfire_order_orderlist 
+                WHERE
+                    "orderId" IN (
+                SELECT
+                    bn_2dire_orderid 
+                FROM
+                    pos_order 
+                WHERE
+                    ID NOT IN ( SELECT DISTINCT order_id FROM pos_order_line ) 
+	                )    
+    """
+
+
+    cr = self._cr
+    cr.execute(sql)
+    res = cr.fetchall()
+    return res
+
+
+def insert_pos_line_not_in_pos_master(self,processlist):
+
+    if len(processlist)==0 :
+        return False
+
+    for item in processlist:
+        pos_order_id=self.env['pos.order'].search([('bn_2dire_orderid','=',item[0])]).id
+        product_id=self.env['product.product'].search([('default_code', '=', item[1])]).id
+        price_tmp=item[2]
+        num_tmp=item[3]
+        ratiofree_tmp=item[4]
+        name_tmp=item[5]
+        branch=self.env['bn.2dfire.branchs'].search([('code', '=', item[6])])
+        company_id=branch['company_id'].id
+        print(item[0])
+
+        val={
+            'company_id': company_id,
+            'order_id': pos_order_id,
+            'name': name_tmp,
+            'product_id': product_id,
+            'price_unit': price_tmp,
+            'price_subtotal': ratiofree_tmp,
+            'price_subtotal_incl': ratiofree_tmp,
+            'qty': num_tmp,
+        }
+        self.env['pos.order.line'].create(val)
+
+    return True
+

@@ -77,10 +77,10 @@ class proc_sync_2dfire(models.TransientModel):
         #     }
 
         period = {
-            'begin': datetime.datetime.now() - datetime.timedelta(days=begin_day),
-            'end': datetime.datetime.now()
-            # 'begin': datetime.datetime.now() - datetime.timedelta(days=2),
-            # 'end': datetime.datetime.now() -  datetime.timedelta(days=2),
+            # 'begin': datetime.datetime.now() - datetime.timedelta(days=begin_day),
+            # 'end': datetime.datetime.now()
+            'begin': datetime.datetime.now() - datetime.timedelta(days=1),
+            'end': datetime.datetime.now() -  datetime.timedelta(days=1),
             # 'end': datetime.datetime.now() - datetime.timedelta(days=end_day),
 
         }
@@ -140,6 +140,15 @@ class proc_sync_2dfire(models.TransientModel):
         bnc_insert_sales(self)
         return True
 
+    def check_posdetail_from_bnc(self):
+        print('check_posdetail_from_bnc')
+        need_proc_list=check_pos_line_not_in_pos_master(self)
+        insert_pos_line_not_in_pos_master(self,need_proc_list)
+
+        return True
+
+
+
     def proc_sync_2dfire_all(self):
         self.env['proc.sync.2dfire'].sync_2dfire_shop_v20()
         self.env['proc.sync.2dfire'].sync_2dfire_product_v20()
@@ -150,6 +159,4 @@ class proc_sync_2dfire(models.TransientModel):
         self.env['proc.sync.2dfire'].interface_2dfire_to_bnc_category()
         self.env['proc.sync.2dfire'].interface_2dfire_to_bnc_product()
         self.env['proc.sync.2dfire'].interface_2dfire_to_bnc_sales()
-
-
         return True
