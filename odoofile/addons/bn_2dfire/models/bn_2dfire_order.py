@@ -33,6 +33,7 @@ class bn_2dfire_order(models.Model):
     entityId = fields.Char(string=u'店entity号码')
     store_code = fields.Char(string=u'门店代号')
     store_name = fields.Char(string=u'门店名称')
+    _sql_constraints = [('unique_ordersn', 'UNIQUE(ordersn)', 'foo must be unique')]
 
 
 class bn_2dfire_order_ordervo(models.Model):
