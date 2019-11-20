@@ -265,7 +265,8 @@ def insert_pos_data_daily(self,procdate,business):
 
             #准备产生pos.order
             vals={
-                'date_order': ov['endTime'],
+                # 'date_order': ov['endTime'],
+                'date_order': ov['openTime'],
                 # 'date_order': saledate,
 
                 'company_id': br01,
