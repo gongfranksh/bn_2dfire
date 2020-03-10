@@ -44,6 +44,9 @@ def get_2dfire_product_from_api(self):
     MY_URL = self.env['bn.2dfire.url'].search([('code', '=', 'menulistv20')])
     stores = self.env['bn.2dfire.branchs'].get_vaild_branchs()
     for store in stores:
+        # if store.id ==1 :
+        #     continue
+
         appid = store['appids']
         para = {
             'para_my_url': MY_URL,
