@@ -151,8 +151,8 @@ class proc_sync_2dfire(models.TransientModel):
 
     def proc_sync_2dfire_all(self):
         self.env['proc.sync.2dfire'].sync_2dfire_shop_v20()
-        # self.env['proc.sync.2dfire'].sync_2dfire_product_v20()
-        # self.env['proc.sync.2dfire'].sync_2dfire_payment_v20()
+        self.env['proc.sync.2dfire'].sync_2dfire_product_v20()
+        self.env['proc.sync.2dfire'].sync_2dfire_payment_v20()
         self.env['proc.sync.2dfire'].sync_2dfire_sales()
         self.env['proc.sync.2dfire'].sync_2dfire_product()
         self.env['proc.sync.2dfire'].sync_2dfire_kindpay()

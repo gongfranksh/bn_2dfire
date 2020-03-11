@@ -75,7 +75,8 @@ class bn_2dfire_connect_api(object):
             "appKey": appkey,
             "v": "1.0",
             "timestamp": str(int(time.time() * 1000)),
-            "range": '2',
+            "range": '1',#1 上架 2 下架 3 不限
+
         }
         obj_json = self.ewh_request.get_json(self.url, self.appid, MY_DATA)
         return obj_json
