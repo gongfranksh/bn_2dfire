@@ -72,6 +72,7 @@ class bn_2dfire_connect_api(object):
         MY_DATA = {
             "method": str(self.method),
             "entityId": str(self.store['code']),
+            "pageSize": '500',
             "appKey": appkey,
             "v": "1.0",
             "timestamp": str(int(time.time() * 1000)),

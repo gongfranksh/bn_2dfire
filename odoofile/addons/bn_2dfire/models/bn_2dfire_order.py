@@ -172,7 +172,8 @@ def get_2dfire_order_from_api(self, procdate):
     # MY_URL = self.env['bn.2dfire.url'].search([('code', '=', 'orderlist-v20')])
 
     #        procdate= datetime.datetime.now() - datetime.timedelta(days=1)
-    stores = self.env['bn.2dfire.branchs'].get_vaild_branchs()
+    # stores = self.env['bn.2dfire.branchs'].get_vaild_branchs()
+    stores = self.env['bn.2dfire.branchs'].search_bycode('00465628')
     # stores = self.env['bn.2dfire.branchs'].search_bycode('00401742')
     for store in stores:
         appid = store['appids']

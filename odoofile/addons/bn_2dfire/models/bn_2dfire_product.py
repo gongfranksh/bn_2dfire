@@ -43,6 +43,7 @@ def get_2dfire_product_from_api(self):
     _logger.info('get_2dfire_product_from_api')
     MY_URL = self.env['bn.2dfire.url'].search([('code', '=', 'menulistv20')])
     stores = self.env['bn.2dfire.branchs'].get_vaild_branchs()
+    # stores = self.env['bn.2dfire.branchs'].search([('id', '=', 10)])
     for store in stores:
         # if store.id ==1 :
         #     continue
